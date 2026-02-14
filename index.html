@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder Pro - Free AI-Powered Builder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-rocket"></i> Resume Builder <span>Pro</span>
+        </div>
+        <div class="nav-actions">
+            <div class="save-status" id="saveStatus"><i class="fas fa-check"></i> Saved</div>
+            <button class="btn btn-secondary" onclick="printResume()"><i class="fas fa-print"></i> Print</button>
+            <button class="btn btn-primary" onclick="downloadPDF()"><i class="fas fa-file-download"></i> Download PDF</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="editor-column">
+            
+            <div class="editor-section">
+                <h3><i class="fas fa-palette"></i> Design & Template</h3>
+                <div class="form-group">
+                    <label>Select Template</label>
+                    <select id="templateSelector" class="form-control">
+                        <option value="modern">Modern Professional</option>
+                        <option value="minimal">Minimalist Clean</option>
+                        <option value="creative">Creative Bold</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Accent Color</label>
+                    <input type="color" id="accentColor" value="#2563eb" class="color-picker">
+                </div>
+            </div>
+
+            <form id="resumeForm">
+                <div class="editor-section">
+                    <h3><i class="fas fa-user"></i> Personal Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" name="fullName" class="form-control" placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label>Job Title</label>
+                            <input type="text" name="jobTitle" class="form-control" placeholder="Software Engineer">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" name="phone" class="form-control" placeholder="+1 234 567 890">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" name="location" class="form-control" placeholder="New York, NY">
+                        </div>
+                        <div class="form-group">
+                            <label>LinkedIn / Portfolio</label>
+                            <input type="text" name="website" class="form-control" placeholder="linkedin.com/in/johndoe">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="editor-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-align-left"></i> Professional Summary</h3>
+                        <button type="button" class="btn-ai" onclick="optimizeWithAI('summary')"><i class="fas fa-magic"></i> AI Optimize</button>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="summary" class="form-control" rows="4" placeholder="Experienced professional with..."></textarea>
+                    </div>
+                </div>
+
+                <div class="editor-section">
+                    <h3><i class="fas fa-tools"></i> Skills</h3>
+                    <div class="form-group">
+                        <label>Comma separated (e.g. JavaScript, Python, Project Management)</label>
+                        <textarea name="skills" class="form-control" rows="2" placeholder="JavaScript, React, Node.js..."></textarea>
+                    </div>
+                </div>
+
+                <div class="editor-section">
+                    <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
+                    <div id="experienceList">
+                        </div>
+                    <button type="button" class="btn btn-outline" onclick="addExperience()"><i class="fas fa-plus"></i> Add Position</button>
+                </div>
+
+                <div class="editor-section">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <div id="educationList">
+                        </div>
+                    <button type="button" class="btn btn-outline" onclick="addEducation()"><i class="fas fa-plus"></i> Add Education</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="preview-column">
+            <div class="preview-container">
+                <div id="resumePreview" class="resume-paper">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
